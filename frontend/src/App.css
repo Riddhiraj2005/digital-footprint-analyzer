@@ -1,0 +1,138 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.search-box {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.search-box input {
+  width: 300px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.search-box button {
+  margin-left: 10px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.profile {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.profile img {
+  border-radius: 50%;
+  border: 4px solid white;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.insight {
+  background: white;
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+
+.recommendations {
+  background: white;
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+
+.recommendations ul {
+  padding-left: 20px;
+}
+
+.recommendations li {
+  margin-bottom: 10px;
+}
+.chart-section {
+  margin-top: 40px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+}
+.dark {
+  background-color: #121212;
+  color: white;
+}
+
+.dark .container {
+  background-color: #121212;
+  color: white;
+}
+
+.dark .card {
+  background-color: #1e1e1e;
+  color: white;
+}
+
+.dark .profile {
+  background-color: #1e1e1e;
+  color: white;
+}
+
+.dark .insight {
+  background-color: #1e1e1e;
+  color: white;
+}
+
+.dark .chart-section {
+  background-color: #1e1e1e;
+  color: white;
+}
+
+.dark input {
+  background-color: #2a2a2a;
+  color: white;
+}
+
+.dark button {
+  background-color: #333;
+  color: white;
+}
