@@ -1,3 +1,5 @@
+const BASE_URL =
+  "https://digital-footprint-analyzer-production.up.railway.app";
 import "./App.css";
 import { useState } from "react";
 import axios from "axios";
@@ -28,7 +30,7 @@ function App() {
 
     // Main analysis data
     const response = await axios.get(
-      `http://localhost:5000/analyze/${username}`
+      `${BASE_URL}/analyze/${username}`
     );
 
     setData(response.data);
@@ -36,7 +38,7 @@ function App() {
     // Language chart data
     const languageResponse =
       await axios.get(
-        `http://localhost:5000/languages/${username}`
+        `${BASE_URL}/languages/${username}`
       );
 
     setChartData(
@@ -44,7 +46,7 @@ function App() {
     );
     const repoResponse =
   await axios.get(
-    `http://localhost:5000/repos/${username}`
+    `${BASE_URL}/repos/${username}`
   );
 
 setRepoChartData(
