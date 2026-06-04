@@ -2,7 +2,7 @@ const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
 const PDFDocument = require("pdfkit");
-
+console.log("🚀 SERVER FILE LOADED");
 const app = express();
 
 app.use(cors());
@@ -87,16 +87,17 @@ if (user.blog) profileCompleteness += 20;
     // Digital Footprint Score
     let score = 0;
 
-    score += Math.min(user.followers, 100) * 0.3;
-    score += Math.min(user.public_repos, 50) * 0.8;
+// 🔥 NEW IMPROVED SCORING SYSTEM
+score += Math.min(user.followers, 100) * 0.2;
+score += Math.min(user.public_repos, 50) * 0.5;
 
-    const accountAge =
-      (Date.now() - new Date(user.created_at)) /
-      (1000 * 60 * 60 * 24 * 365);
+const accountAge =
+  (Date.now() - new Date(user.created_at)) /
+  (1000 * 60 * 60 * 24 * 365);
 
-    score += accountAge * 5;
+score += accountAge * 3;
 
-    score = Math.round(Math.min(score, 100));
+    score = Math.min(Math.round(score), 100);
     let tier = "Beginner";
 
 if (score >= 90) {
@@ -142,10 +143,9 @@ if (user.followers < 50) {
   );
 }
 
-if (!user.bio) {
-  recommendations.push(
-    "Add a professional GitHub bio."
-  );
+if (!user.bio && user.followers < 50) {
+  recommendations.push("Add a professional GitHub bio.");
+
 }
 
 if (totalStars < 20) {
@@ -357,12 +357,13 @@ app.get("/languages/:username", async (req, res) => {
       }
     });
 
-    const result = Object.keys(languageCount).map(
-      (language) => ({
-        name: language,
-        value: languageCount[language]
-      })
-    );
+    const total = repos.length;
+
+const result = Object.keys(languageCount).map((language) => ({
+  name: language,
+  value: languageCount[language],
+  percentage: ((languageCount[language] / total) * 100).toFixed(2)
+}));
 
     res.json(result);
 
@@ -383,15 +384,13 @@ app.get("/repos/:username", async (req, res) => {
     const repos = repoResponse.data;
 
     const result = repos
-      .sort(
-        (a, b) =>
-          b.stargazers_count - a.stargazers_count
-      )
-      .slice(0, 5)
-      .map((repo) => ({
-        name: repo.name,
-        stars: repo.stargazers_count
-      }));
+  .sort((a, b) => b.stargazers_count - a.stargazers_count)
+  .slice(0, 5)
+  .map((repo, index) => ({
+  rank: index + 1,
+  name: repo.name,
+  stars: repo.stargazers_count
+}));
 
     res.json(result);
 
@@ -402,7 +401,7 @@ app.get("/repos/:username", async (req, res) => {
   }
 });
 const PORT = process.env.PORT || 5000;
-
+console.log("🚀 ABOUT TO START SERVER");
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log("🔥 SERVER STARTED ON PORT:", PORT);
 });
