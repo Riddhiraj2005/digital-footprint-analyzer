@@ -8,6 +8,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("🚀 Digital Footprint Analyzer Backend is Running");
+});
+
 app.get("/analyze/:username", async (req, res) => {
   try {
     const username = req.params.username;
